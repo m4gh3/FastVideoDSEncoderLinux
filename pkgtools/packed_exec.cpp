@@ -70,6 +70,7 @@ int main(int argc, char **argv )
 	struct stat sb;
 	std::string appdata = "/tmp/FastVideoDS/";
 	setenv("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT", "1", 1 );
+	setenv("LD_LIBRARY_PATH", "/tmp/FastVideoDS/publish/x64", 1 );
 	if(stat(appdata.c_str(), &sb) != 0)
 	{
 		getcwd(cwd, sizeof(cwd) );

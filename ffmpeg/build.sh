@@ -67,7 +67,7 @@ case $1 in
 		git -C aom pull 2> /dev/null || git clone --depth 1 https://aomedia.googlesource.com/aom && \
 		mkdir -p aom_build && \
 		cd aom_build && \
-		PATH="$BUILD_PATH/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD_PATH" -DENABLE_TESTS=OFF -DENABLE_NASM=on -DCONFIG_SHARED=1 ../aom && \
+		PATH="$BUILD_PATH/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$BUILD_PATH" -DENABLE_TESTS=OFF -DENABLE_NASM=on -DBUILD_SHARED_LIBS=1 ../aom && \
 		PATH="$BUILD_PATH/bin:$PATH" make -j$JOBS && \
 		make install
 	;;
@@ -122,7 +122,6 @@ case $1 in
 		  --enable-gpl \
 		  --enable-libaom \
 		  --enable-libfdk-aac \
-		  --enable-libmp3lame \
 		  --enable-libopus \
 		  --enable-libsvtav1 \
 		  --enable-libdav1d \
