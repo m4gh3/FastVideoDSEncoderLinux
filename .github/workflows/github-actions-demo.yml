@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Build FastVideoDSEncoder for Linux as in a self-container self-extracting binary:
+  Build FastVideoDSEncoder for Linux:
     runs-on: ubuntu-latest
     steps:
       #- run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
