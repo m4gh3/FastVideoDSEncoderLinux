@@ -69,6 +69,7 @@ int main(int argc, char **argv )
 	char cwd[PATH_MAX];
 	struct stat sb;
 	std::string appdata = "/tmp/FastVideoDS/";
+	setenv("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT", "1", 1 );
 	if(stat(appdata.c_str(), &sb) != 0)
 	{
 		getcwd(cwd, sizeof(cwd) );
@@ -77,10 +78,10 @@ int main(int argc, char **argv )
 		std::ofstream("FastVideoDS.bar.gz", std::ofstream::binary | std::ofstream::trunc ).write(_binary_publish_bar_gz_start, _binary_publish_bar_gz_end - _binary_publish_bar_gz_start );
 		exbargz((char *)"FastVideoDS.bar.gz");
 		chdir(cwd);
-		execv("/tmp/FastVideoDS/publish/FastVideoDSEncoder", argv );
+		execve("/tmp/FastVideoDS/publish/FastVideoDSEncoder", argv, environ );
 	}
 	else if( S_ISDIR(sb.st_mode) )
-		execv("/tmp/FastVideoDS/publish/FastVideoDSEncoder", argv );
+		execve("/tmp/FastVideoDS/publish/FastVideoDSEncoder", argv, environ );
 	std::cerr << "Error executing /tmp/FastVideoDS/publish/FastVideoDSEncoder consider checking and deleting /tmp/FastVideoDSEncoder" << std::endl;
 	return 1;
 }

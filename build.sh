@@ -12,4 +12,4 @@ find publish | $LIST2BAR publish.bar
 gzip publish.bar
 $BIN2S publish.bar.gz | as -o $BUILDDIR/publish.o
 cd $BUILDDIR
-g++ $BUILDDIR/publish.o ../pkgtools/packed_exec.cpp -lz -o FastVideoDSEncoder
+g++ -static $BUILDDIR/publish.o ../pkgtools/packed_exec.cpp -l:libz.a -o FastVideoDSEncoder
