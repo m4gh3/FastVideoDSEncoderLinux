@@ -12,9 +12,11 @@ jobs:
         uses: actions/checkout@v3
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository, now start installing stuff
+      - name: List files in the repository, install build deps and build the app right away
         run: |
           ls ${{ github.workspace }}
           sudo apt update
-          sudo apt install gcc g++ nasm yasm git pkg-config make cmake ninja-build meson autoconf libtool bzip2 libz-dev
+          sudo apt install gcc g++ nasm yasm git pkg-config make cmake ninja-build meson autoconf libtool bzip2 libz-dev dotnet-sdk-6.0
+          ./build.sh
+          ./build/FastVideoDSEncoder
       - run: echo "🍏 This job's status is ${{ job.status }}."
