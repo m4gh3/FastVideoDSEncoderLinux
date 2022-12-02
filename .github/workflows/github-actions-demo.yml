@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: FastVideoDSEncoderLinux
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   release:
@@ -19,8 +19,13 @@ jobs:
       #- run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install build deps
         run: |
-          sudo apt update
-          sudo apt install gcc g++ nasm yasm git pkg-config make cmake ninja-build meson autoconf libtool bzip2 libz-dev dotnet-sdk-6.0 jq curl
+          apt update
+          apt install wget
+          wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+          dpkg -i packages-microsoft-prod.deb
+          rm packages-microsoft-prod.deb
+          apt update
+          apt install gcc g++ nasm yasm git pkg-config make cmake ninja-build meson autoconf libtool bzip2 libz-dev dotnet-sdk-6.0 jq curl
       - name: build pkgtools
         run: ./build.sh pkgtools
       - name: build ffmpeg shared libs
