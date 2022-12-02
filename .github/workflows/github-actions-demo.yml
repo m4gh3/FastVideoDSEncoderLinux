@@ -1,6 +1,8 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  release:
+    types: [created]
 jobs:
   Build_FastVideoDSEncoder_for_Linux:
     runs-on: ubuntu-latest
