@@ -28,7 +28,7 @@ jobs:
           yes | apt install gcc g++ nasm yasm git pkg-config make cmake ninja-build meson autoconf libtool bzip2 libz-dev dotnet-sdk-6.0 jq curl
       - name: build pkgtools
         run: ./build.sh pkgtools
-      - name: build ffmpeg shared libs
+      - name: download ffmpeg shared libs
         run: ./build.sh ffmpeg
       - name: build FastVideoDSEncoder
         run: ./build.sh FastVideoDSEncoder

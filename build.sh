@@ -10,15 +10,16 @@ case $1 in
 		gcc pkgtools/bin2s.c -o build/bin2s
 	;;
 	ffmpeg)
-		cd ffmpeg
-		./build.sh all
+		cd $BUILDDIR
+		wget https://github.com/m4gh3/ffmpeg_linux_builder/releases/download/release.2022.12.17/ffmpeg_libs.tar.bz2
+		tar xjf ffmpeg_libs.tar.bz2
 	;;
 	FastVideoDSEncoder)
 		cd FastVideoDSEncoder
 		dotnet publish -p:PublishSingleFile=true -r linux-x64 -c Release -p:PublishTrimmed=true
 		cd bin/Release/net6.0/linux-x64/
 		rm publish/FastVideoDSEncoder.pdb publish/Gericom.FastVideoDS.pdb
-		cp $BUILDDIR/../ffmpeg/build/lib/*.so.* publish/x64/
+		cp $BUILDDIR/lib/*.so.* publish/x64/
 		rm publish/x64/*.so.*.*
 		find publish | $LIST2BAR publish.bar
 		rm publish.bar.gz
